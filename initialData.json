@@ -1,0 +1,38 @@
+{
+  "topicos": [
+    {
+      "tituloTopico": "Benefícios",
+      "cards": [
+        {
+          "titulo": "Melhora Estética",
+          "texto": "Transforma a aparência dos dentes, corrigindo imperfeições como manchas, descolorações, desgastes, espaçamentos e desalinhamentos leves."
+        },
+        {
+          "titulo": "Procedimento menos invasivo",
+          "texto": "Diferente das facetas de porcelana, as facetas em resina podem ser aplicadas com mínimo ou nenhum desgaste da estrutura dental natural."
+        },
+        {
+          "titulo": "Estética natural",
+          "texto": "As facetas em resina proporcionam uma aparência altamente natural, reproduzindo com precisão a translucidez, o brilho e a cor dos dentes, garantindo um sorriso harmonioso e autêntico."
+        }
+      ]
+    },
+    {
+      "tituloTopico": "Perguntas Frequentes",
+      "cards": [
+        {
+          "titulo": "Quanto tempo dura o tratamento?",
+          "texto": "Para facetas de resina, o procedimento dura cerca de 5 horas, pois cada dente é esculpido à mão com muita precisão e delicadeza."
+        },
+        {
+          "titulo": "As facetas são resistentes?",
+          "texto": "Sim, porém, é importante evitar hábitos como roer unhas, morder objetos duros e ranger os dentes, pois esses comportamentos podem comprometer a durabilidade."
+        },
+        {
+          "titulo": "Qual é o custo do procedimento?",
+          "texto": "O custo varia do número de dentes e da complexidade do caso. A melhor forma de determinar o valor é agendar uma consulta para avaliar as suas necessidades."
+        }
+      ]
+    }
+  ]
+} 

@@ -3,6 +3,11 @@ import { IBaseDocument, ObjectId } from '../mongoose';
 
 export interface IPaciente extends IBaseDocument {
   nome: string;
+  imagens?: Array<{
+    url: string;
+    descricao?: string;
+    tipo: string;
+  }>;
 }
 
 export interface ITopico extends IBaseDocument {
@@ -14,10 +19,4 @@ export interface ICard extends IBaseDocument {
   titulo: string;
   texto: string;
   topico: ObjectId;
-}
-
-export interface IImagem extends IBaseDocument {
-  url: string;
-  descricao?: string;
-  tipo: string;
 } 

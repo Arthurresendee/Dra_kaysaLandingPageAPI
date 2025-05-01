@@ -2,64 +2,59 @@ import { Request, Response } from 'express';
 import Topico from '../models/Topico';
 
 class TopicoController {
-  async getAll(req: Request, res: Response) {
+  static async getAll(req: Request, res: Response) {
     try {
       const topicos = await Topico.find().populate('cards');
       res.json(topicos);
     } catch (error) {
-      res.status(500).json({ message: 'Erro ao buscar tópicos', error });
+      res.status(500).json({ error: 'Erro ao buscar tópicos' });
     }
   }
 
-  async getById(req: Request, res: Response) {
+  static async getById(req: Request, res: Response) {
     try {
       const topico = await Topico.findById(req.params.id).populate('cards');
       if (!topico) {
-        return res.status(404).json({ message: 'Tópico não encontrado' });
+        return res.status(404).json({ error: 'Tópico não encontrado' });
       }
       res.json(topico);
     } catch (error) {
-      res.status(500).json({ message: 'Erro ao buscar tópico', error });
+      res.status(500).json({ error: 'Erro ao buscar tópico' });
     }
   }
 
-  async create(req: Request, res: Response) {
+  static async create(req: Request, res: Response) {
     try {
-      const topico = new Topico(req.body);
-      await topico.save();
+      const topico = await Topico.create(req.body);
       res.status(201).json(topico);
     } catch (error) {
-      res.status(400).json({ message: 'Erro ao criar tópico', error });
+      res.status(500).json({ error: 'Erro ao criar tópico' });
     }
   }
 
-  async update(req: Request, res: Response) {
+  static async update(req: Request, res: Response) {
     try {
-      const topico = await Topico.findByIdAndUpdate(
-        req.params.id,
-        { ...req.body, updatedAt: new Date() },
-        { new: true }
-      );
+      const topico = await Topico.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate('cards');
       if (!topico) {
-        return res.status(404).json({ message: 'Tópico não encontrado' });
+        return res.status(404).json({ error: 'Tópico não encontrado' });
       }
       res.json(topico);
     } catch (error) {
-      res.status(400).json({ message: 'Erro ao atualizar tópico', error });
+      res.status(500).json({ error: 'Erro ao atualizar tópico' });
     }
   }
 
-  async delete(req: Request, res: Response) {
+  static async delete(req: Request, res: Response) {
     try {
       const topico = await Topico.findByIdAndDelete(req.params.id);
       if (!topico) {
-        return res.status(404).json({ message: 'Tópico não encontrado' });
+        return res.status(404).json({ error: 'Tópico não encontrado' });
       }
-      res.json({ message: 'Tópico deletado com sucesso' });
+      res.json({ message: 'Tópico removido com sucesso' });
     } catch (error) {
-      res.status(500).json({ message: 'Erro ao deletar tópico', error });
+      res.status(500).json({ error: 'Erro ao remover tópico' });
     }
   }
 }
 
-export default new TopicoController(); 
+export default TopicoController; 

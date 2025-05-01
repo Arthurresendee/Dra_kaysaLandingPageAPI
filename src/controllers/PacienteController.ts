@@ -2,28 +2,29 @@ import { Request, Response } from 'express';
 import Paciente from '../models/Paciente';
 
 class PacienteController {
-  async getAll(req: Request, res: Response) {
+  static async getAll(req: Request, res: Response) {
     try {
-      const pacientes = await Paciente.find().populate('endereco procedimentos planos');
+      const pacientes = await Paciente.find();
       res.json(pacientes);
     } catch (error) {
       res.status(500).json({ message: 'Erro ao buscar pacientes', error });
     }
   }
 
-  async getById(req: Request, res: Response) {
+  static async getById(req: Request, res: Response) {
     try {
-      const paciente = await Paciente.findById(req.params.id).populate('endereco procedimentos planos');
+      const paciente = await Paciente.findById(req.params.id);
       if (!paciente) {
         return res.status(404).json({ message: 'Paciente não encontrado' });
       }
+      res.setHeader('Content-Type', 'application/json');
       res.json(paciente);
     } catch (error) {
       res.status(500).json({ message: 'Erro ao buscar paciente', error });
     }
   }
 
-  async create(req: Request, res: Response) {
+  static async create(req: Request, res: Response) {
     try {
       const paciente = new Paciente(req.body);
       await paciente.save();
@@ -33,7 +34,7 @@ class PacienteController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  static async update(req: Request, res: Response) {
     try {
       const paciente = await Paciente.findByIdAndUpdate(
         req.params.id,
@@ -49,7 +50,7 @@ class PacienteController {
     }
   }
 
-  async delete(req: Request, res: Response) {
+  static async delete(req: Request, res: Response) {
     try {
       const paciente = await Paciente.findByIdAndDelete(req.params.id);
       if (!paciente) {
@@ -62,4 +63,4 @@ class PacienteController {
   }
 }
 
-export default new PacienteController(); 
+export default PacienteController; 
