@@ -19,4 +19,9 @@ export interface ICard extends IBaseDocument {
   titulo: string;
   texto: string;
   topico: ObjectId;
+}
+
+export interface IUsuarioSistema extends IBaseDocument {
+  user: string;
+  senha: string;
 } 
