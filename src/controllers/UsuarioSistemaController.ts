@@ -36,8 +36,7 @@ class UsuarioSistemaController {
       const usuario = new UsuarioSistema(req.body);
       await usuario.save();
       
-      const { senha, ...usuarioSemSenha } = usuario.toObject();
-      
+      const { senha: _, ...usuarioSemSenha } = usuario.toObject();
       res.status(201).json(usuarioSemSenha);
     } catch (error) {
       res.status(400).json({ message: 'Erro ao criar usuário', error });
@@ -83,24 +82,6 @@ class UsuarioSistemaController {
       res.json({ message: 'Usuário deletado com sucesso' });
     } catch (error) {
       res.status(500).json({ message: 'Erro ao deletar usuário', error });
-    }
-  }
-
-  // Rota específica para login (sem autenticação por enquanto)
-  static async login(req: Request, res: Response) {
-    try {
-      const { user, senha } = req.body;
-
-      const usuario = await UsuarioSistema.findOne({ user, senha });
-      if (!usuario) {
-        return res.status(401).json({ message: 'Usuário ou senha inválidos' });
-      }
-
-      const { senha: _, ...usuarioSemSenha } = usuario.toObject();
-
-      res.json(usuarioSemSenha);
-    } catch (error) {
-      res.status(500).json({ message: 'Erro ao realizar login', error });
     }
   }
 }

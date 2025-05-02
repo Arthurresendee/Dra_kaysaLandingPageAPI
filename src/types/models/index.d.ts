@@ -24,4 +24,5 @@ export interface ICard extends IBaseDocument {
 export interface IUsuarioSistema extends IBaseDocument {
   user: string;
   senha: string;
+  verificarSenha(senha: string): Promise<boolean>;
 } 
