@@ -1,14 +1,7 @@
 import { Document } from 'mongoose';
 import { IBaseDocument, ObjectId } from '../mongoose';
 
-export interface IPaciente extends IBaseDocument {
-  nome: string;
-  imagens?: Array<{
-    url: string;
-    descricao?: string;
-    tipo: string;
-  }>;
-}
+// Outras interfaces podem ser adicionadas aqui
 
 export interface ITopico extends IBaseDocument {
   tituloTopico: string;
