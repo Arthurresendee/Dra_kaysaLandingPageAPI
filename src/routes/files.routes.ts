@@ -15,6 +15,7 @@ router.get('/:fileId', async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: 'Arquivo não encontrado' });
   }
+  console.log("fileBuffer");
 });
 
 export default router; 
